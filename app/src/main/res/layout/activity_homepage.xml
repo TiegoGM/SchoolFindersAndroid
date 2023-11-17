@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Homepage">
+
+    <ImageView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="298dp"
+        android:layout_height="396dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="46dp"
+        android:src="@drawable/schoolfinders" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        android:layout_below="@+id/welcomeMessage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <!-- new application button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/newApplicationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="New Application"
+        android:backgroundTint="#4da6ff"
+        app:strokeColor="#2196F3" />
+
+    <!-- view applications button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/viewApplicationsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Applications Status"
+        android:layout_below="@+id/newApplicationButton"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#4da6ff"
+        app:strokeColor="#2196F3"
+        android:layout_marginTop="50dp" />
+
+    <!-- bottom navigation bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+
+</RelativeLayout>

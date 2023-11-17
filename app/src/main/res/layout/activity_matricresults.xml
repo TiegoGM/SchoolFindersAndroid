@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Matricresults">
+
+    <TextView
+        android:id="@+id/textViewHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Document Upload"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="663dp"
+        android:layout_below="@+id/textViewHeading"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="22dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- ID section -->
+            <TextView
+                android:id="@+id/textViewId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="ID"
+                android:textSize="18sp" />
+
+            <!-- Image View for ID -->
+            <ImageView
+                android:id="@+id/idImageView"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/image_placeholder" />
+
+            <!-- Buttons for ID section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <!-- Open Camera Button for ID -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnIdCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="#4da6ff"
+                    android:text="Take ID Image" />
+
+                <!-- Open Gallery Button for ID -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnIdGallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="#4da6ff"
+                    android:text="Load ID Image" />
+            </LinearLayout>
+
+            <!-- Matric Results section -->
+            <TextView
+                android:id="@+id/textViewMatricResults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Matric Results"
+                android:textSize="18sp" />
+
+            <!-- Matric Results section -->
+            <ImageView
+                android:id="@+id/matricImageView"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/image_placeholder" />
+
+            <!-- Buttons for Matric Results section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <!-- Open Camera Button for Matric Results -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMatricCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="#4da6ff"
+                    android:text="Take Matric Image" />
+
+                <!-- Open Gallery Button for Matric Results -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMatricGallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="#4da6ff"
+                    android:text="Load Matric Image" />
+            </LinearLayout>
+
+            <!-- Submit Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="#4da6ff"
+                android:text="Submit" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom navigation bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SchoolFinders</string>
+    <string-array name="university_array">
+        <item>IIE Rosebank College</item>
+        <item>Northern technical college</item>
+    </string-array>
+
+    <string-array name="courses_array">
+        <item>Information Technology</item>
+        <item>Engineering</item>
+        <item>Business</item>
+        <item>Accounting</item>
+        <item>Finance</item>
+        <item>Marketing</item>
+        <item>Human Resources</item>
+        <item>Education</item>
+        <item>Architecture</item>
+        <item>Journalism</item>
+    </string-array>
+</resources>
