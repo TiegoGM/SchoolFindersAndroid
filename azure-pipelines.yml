@@ -1,0 +1,50 @@
+trigger:
+- main  
+
+pr:
+- main
+
+pool:
+  vmImage: 'macOS-10.15'
+
+variables:
+  buildDir: 'out'
+
+jobs:
+- job: Build
+  displayName: 'Build job'
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core SDK'
+    inputs:
+      version: '3.x'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+  - script: |
+      echo '##vso[task.prependpath]$(Agent.ToolsDirectory)/dotnet'
+    displayName: 'Add dotnet to PATH'
+
+  - task: UseJavaVersion@1
+    inputs:
+      version: '11'
+      addToPath: true
+
+  - task: Gradle@2
+    inputs:
+      workingDirectory: '$(System.DefaultWorkingDirectory)/path-to-your-android-project'
+      gradleWrapperFile: 'gradlew'
+      options: '-Xmx3072m'
+      tasks: 'assembleDebug'
+
+- job: Publish
+  displayName: 'Publish Artifact'
+  dependsOn: Build
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/SchoolFinders'
+      artifactName: 'drop'
+      publishLocation: 'Container'
