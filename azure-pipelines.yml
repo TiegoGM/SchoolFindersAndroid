@@ -1,50 +1,28 @@
 trigger:
-- main  
-
-pr:
-- main
+- master
 
 pool:
   vmImage: 'macOS-10.15'
 
-variables:
-  buildDir: 'out'
-
 jobs:
 - job: Build
-  displayName: 'Build job'
-  pool:
-    vmImage: 'macOS-10.15'
+  displayName: 'Build and Test'
   steps:
-  - task: UseDotNet@2
-    displayName: 'Use .NET Core SDK'
-    inputs:
-      version: '3.x'
-      installationPath: $(Agent.ToolsDirectory)/dotnet
-  - script: |
-      echo '##vso[task.prependpath]$(Agent.ToolsDirectory)/dotnet'
-    displayName: 'Add dotnet to PATH'
-
   - task: UseJavaVersion@1
     inputs:
-      version: '11'
+      versionSpec: '11'
       addToPath: true
-
   - task: Gradle@2
     inputs:
-      workingDirectory: '$(System.DefaultWorkingDirectory)/path-to-your-android-project'
-      gradleWrapperFile: 'gradlew'
+      workingDirectory: '$(Build.SourcesDirectory)/SchoolFindersAndroid'
       options: '-Xmx3072m'
-      tasks: 'assembleDebug'
-
-- job: Publish
-  displayName: 'Publish Artifact'
-  dependsOn: Build
-  pool:
-    vmImage: 'windows-latest'
-  steps:
+      tasks: 'assembleDebug testDebug'
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/TEST-*.xml'
+      searchFolder: '$(Build.SourcesDirectory)/SchoolFindersAndroid/app/build/test-results'
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/SchoolFinders'
+      pathtoPublish: '$(Build.SourcesDirectory)/SchoolFindersAndroid/app/build/outputs/apk/debug'
       artifactName: 'drop'
-      publishLocation: 'Container'
