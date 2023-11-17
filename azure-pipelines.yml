@@ -8,10 +8,11 @@ jobs:
 - job: Build
   displayName: 'Build and Test'
   steps:
-  - task: UseAndroidSdk@2
+  - task: Gradle@2
     inputs:
-      versionSpec: '29'
-      addToPath: true
+      workingDirectory: '$(Build.SourcesDirectory)/SchoolFindersAndroid'
+      options: '-Xmx3072m'
+      tasks: 'wrapper --gradle-version=6.8.3'
   - task: Gradle@2
     inputs:
       workingDirectory: '$(Build.SourcesDirectory)/SchoolFindersAndroid'
