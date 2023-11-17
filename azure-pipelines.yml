@@ -7,6 +7,9 @@ pool:
 jobs:
 - job: Build
   displayName: 'Build and Test'
+  pool:
+    vmImage: 'macOS-10.15'
+    parallel: 1  # Set the number of parallel jobs to 1
   steps:
   - task: Gradle@2
     inputs:
