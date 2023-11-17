@@ -8,9 +8,9 @@ jobs:
 - job: Build
   displayName: 'Build and Test'
   steps:
-  - task: UseJavaVersion@1
+  - task: UseAndroidSdk@2
     inputs:
-      versionSpec: '11'
+      versionSpec: '29'
       addToPath: true
   - task: Gradle@2
     inputs:
