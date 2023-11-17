@@ -1,0 +1,29 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'macOS-10.15'
+
+jobs:
+- job: Build
+  displayName: 'Build and Test'
+  steps:
+  - task: Gradle@2
+    inputs:
+      workingDirectory: '$(Build.SourcesDirectory)/SchoolFindersAndroid'
+      options: '-Xmx3072m'
+      tasks: 'wrapper --gradle-version=6.8.3'
+  - task: Gradle@2
+    inputs:
+      workingDirectory: '$(Build.SourcesDirectory)/SchoolFindersAndroid'
+      options: '-Xmx3072m'
+      tasks: 'assembleDebug testDebug'
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/TEST-*.xml'
+      searchFolder: '$(Build.SourcesDirectory)/SchoolFindersAndroid/app/build/test-results'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.SourcesDirectory)/SchoolFindersAndroid/app/build/outputs/apk/debug'
+      artifactName: 'drop'
